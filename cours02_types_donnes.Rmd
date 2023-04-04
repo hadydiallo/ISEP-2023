@@ -1,0 +1,177 @@
+---
+title: "cours02-types_données"
+author: "M. Hady DIALLO"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Les types de données dans R 
+$$s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2$$
+##  Objets :
+
+Les objets sont utilisés pour stocker des données dans un format spécifique. Par exemple, un objet de type "character" peut être utilisé pour stocker une chaîne de caractères telle qu'un nom ou une adresse e-mail.
+
+##   Vecteurs :
+
+Les vecteurs sont utilisés pour stocker des données de même type. Par exemple, un vecteur de type "numeric" peut être utilisé pour stocker une liste de nombres, tandis qu'un vecteur de type "character" peut être utilisé pour stocker une liste de noms.
+
+##   Facteurs :
+
+Les facteurs sont utilisés pour stocker des données catégorielles. Par exemple, un facteur peut être utilisé pour stocker des informations sur le genre ou le niveau d'éducation des individus dans un ensemble de données.
+
+##   Matrices :
+
+Les matrices sont utilisées pour stocker des données sous forme de tableaux à deux dimensions. Par exemple, une matrice peut être utilisée pour stocker des données sur les notes d'étudiants dans différentes matières.
+
+##  Liste :
+
+Les listes sont utilisées pour stocker des données de différents types. Par exemple, une liste peut être utilisée pour stocker une combinaison de vecteurs, de matrices et d'objets.
+
+##   Data Frame :
+
+Les data frames sont utilisés pour stocker des données tabulaires. Par exemple, un data frame peut être utilisé pour stocker des données sur les ventes de produits, avec des informations telles que le nom du produit, le prix, la quantité vendue, etc.
+
+# Opérateurs 
+
+##  Opérateurs arithmétiques :
+
+- Addition : 2 + 3
+- Soustraction : 5 - 2
+- Multiplication : 4 * 6
+- Division : 10 / 2
+- Modulo (reste de la division) : 15 %% 4
+- Puissance : 2^3
+
+##  Opérateurs relationnels :
+
+- Égalité : 3 == 3
+- Différence : 5 != 3
+- Inférieur : 2 < 5
+-  Inférieur ou égal : 2 <= 2
+-  Supérieur : 10 - 5
+- Supérieur ou égal : 5 >= 5
+
+##  Opérateurs logiques :
+
+- Et logique : (2 == 2) & (3 != 4)
+-  Ou logique : (2 == 2) | (3 != 4)
+-  Négation logique : !(2 == 2)
+
+##  Opérateurs d'assignation :
+
+-  Assigner une valeur à une variable : a <- 5
+-  Ajouter une valeur à une variable existante : a <- a + 2
+-  Assigner plusieurs valeurs à plusieurs variables : c(a, b) <- c(1, 2)
+
+
+# Exercices 1
+
+Supposons que nous ayons un vecteur de données numériques représentant les notes d'un examen, et nous voulons calculer la moyenne de ces notes. Cependant, il y a quelques valeurs manquantes dans le vecteur.
+
+1. Créez un vecteur de données numériques représentant les notes d'un examen, avec quelques valeurs manquantes :
+notes <- c(15, 18, 12, NA, 17, 20, NA, 14, 16, 19)
+
+2. Utilisez la fonction is.na() pour vérifier quelles sont les valeurs manquantes dans le vecteur :
+is.na(notes)
+
+Le résultat sera un vecteur de valeurs booléennes, avec TRUE pour les valeurs manquantes et FALSE pour les autres valeurs.
+
+3. Utilisez la fonction mean() pour calculer la moyenne des notes, en excluant les valeurs manquantes :
+mean(notes, na.rm = TRUE)
+
+ Le résultat sera la moyenne des notes (16.2 dans cet exemple).
+
+4. Utilisez la fonction sum() pour calculer la somme des notes, en excluant les valeurs manquantes :
+sum(notes, na.rm = TRUE)
+
+Le résultat sera la somme des notes (162 dans cet exemple).
+
+5. Utilisez l'opérateur de comparaison inférieur ou égal (<=) pour vérifier combien de notes sont supérieures ou égales à 17 :
+sum(notes >= 17, na.rm = TRUE)
+
+Le résultat sera le nombre de notes supérieures ou égales à 17 (3 dans cet exemple).
+
+> En utilisant ces opérateurs et fonctions en combinaison, nous pouvons effectuer des calculs statistiques sur des données numériques, même lorsqu'il y a des valeurs manquantes dans les données.
+
+```{r}
+notes <- c(15, 18, 12, NA, 17, 20, NA, 14, 16, 19)
+
+is.na(notes)
+# [ 1] FALSE FALSE FALSE TRUE FALSE FALSE TRUE FALSE FALSE FALSE
+
+mean(notes, na.rm = TRUE)
+# [ 1] 16.2
+
+sum(notes, na.rm = TRUE)
+# [ 1] 162
+
+sum(notes >= 17, na.rm = TRUE)
+notes <- c(15, 18, 12, NA, 17, 20, NA, 14, 16, 19)
+
+is.na(notes)
+# [ 1] FALSE FALSE FALSE TRUE FALSE FALSE TRUE FALSE FALSE FALSE
+
+mean(notes, na.rm = TRUE)
+# [ 1] 16.2
+
+sum(notes, na.rm = TRUE)
+# [ 1] 162
+
+sum(notes >= 17, na.rm = TRUE)
+# [ 1] 3
+```
+
+
+# Exercices 2 : 
+
+Supposons que vous travaillez pour une entreprise de vente en ligne, et que vous avez les données suivantes sur les ventes de produits au cours de la dernière semaine :
+
+- Produit A : 10 ventes à 1500 l'unité
+- Produit B : 5 ventes à 20000 l'unité
+- Produit C : 3 ventes à 100000 l'unité
+
+Vous devez faire les opérations suivantes :
+
+1. Créer des vecteurs pour stocker les noms des produits, les prix et les quantités vendues.
+
+2. Créer une matrice pour stocker les données sur les ventes.
+
+3. Calculer le chiffre d'affaires total de la semaine.
+Créer un facteur pour stocker les noms des produits qui ont été vendus.
+
+4. Créer un data frame pour stocker les données sur les ventes.
+
+
+##  element de correction 
+
+```{r}
+# Créer des vecteurs pour stocker les noms des produits, les prix et les quantités vendues.
+noms_produits <- c("Produit A", "Produit B", "Produit C")
+prix <- c(1500, 20000, 100000)
+quantites_vendues <- c(10, 5, 3)
+
+# Créer une matrice pour stocker les données sur les ventes.
+ventes_matrice <- matrix(c(prix*quantites_vendues, quantites_vendues), nrow = 3, ncol = 2, dimnames = list(noms_produits, c("CA", "Quantité vendue")))
+
+# Calculer le chiffre d'affaires total de la semaine.
+chiffre_affaires_total <- sum(ventes_matrice[, "CA"])
+
+# Créer un facteur pour stocker les noms des produits qui ont été vendus.
+produits_vendus <- factor(noms_produits[ventes_matrice[, "Quantité vendue"] - 0])
+
+# Créer un data frame pour stocker les données sur les ventes.
+
+ventes_data_frame <- data.frame(nom_produit = noms_produits, prix = prix, quantite_vendue = quantites_vendues, chiffre_affaires = prix*quantites_vendues)
+
+ventes_data_frame 
+
+```
+
+> Dans cet exercice, nous avons utilisé des vecteurs pour stocker les noms des produits, les prix et les quantités vendues. Nous avons ensuite utilisé une matrice pour stocker les données sur les ventes, avec les prix et les quantités vendues pour chaque produit. Nous avons calculé le chiffre d'affaires total en additionnant les ventes pour chaque produit, et avons créé un facteur pour stocker les noms des produits qui ont été vendus. Enfin, nous avons créé un data frame pour stocker les données sur les ventes, avec des colonnes pour le nom du produit, le prix, la quantité vendue et le chiffre d'affaires.
+
+
+
